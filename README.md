@@ -58,9 +58,4 @@ Supports only single-character variables (A–Z)
 Designed for educational and analytical use, not production parsing
 Limited to core CFG simplification (no normal form conversions)
 
-🚧 Potential Extensions
-Chomsky Normal Form (CNF) conversion
-Greibach Normal Form (GNF) conversion
-Grammar equivalence testing
-Export and persistence features
-Step-by-step animation controls
+
