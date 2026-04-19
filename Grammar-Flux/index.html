@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive TOC Grammar Lab</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="flex: 1;"></div>
+        <h1 style="flex: 1;">GrammarFlux</h1>
+        <div style="flex: 1; text-align: right; padding-right: 1rem;">
+            <button id="theme-toggle" class="btn btn-secondary" style="border-radius: 20px;">☀️</button>
+        </div>
+    </header>
+    
+    <main class="workbench">
+        <!-- Left Pane: Input -->
+        <section class="pane input-pane">
+            <div class="pane-header">
+                <h2>Original Grammar Input</h2>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button id="btn-insert-arrow" class="btn btn-secondary" title="Insert Arrow">Insert →</button>
+                    <button id="btn-insert-eps" class="btn btn-secondary" title="Insert Epsilon">Insert ε</button>
+                    <button id="btn-load-example" class="btn btn-secondary">Load Exact Example</button>
+                </div>
+            </div>
+            <div class="input-container">
+                <textarea id="grammar-input" placeholder="Enter grammar rules here...&#10;Format: S -> aA | bB | C   or   S = aA | bB | C&#10;Use 'ε' or 'e' for epsilon.&#10;Uppercase = Variables, Lowercase = Terminals." spellcheck="false"></textarea>
+            </div>
+            
+            <div class="controls-toolbar">
+                <button id="btn-parse" class="btn btn-primary">Parse &amp; Initialize</button>
+            </div>
+
+            <div class="pane-header" style="margin-top: 1.5rem;">
+                <h2>Parsed Internal State</h2>
+            </div>
+            <div class="grammar-display" id="parsed-grammar">
+                <div class="placeholder">Awaiting Grammar...</div>
+            </div>
+
+            <div class="steps-controls">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h3 style="margin: 0;">Algorithm Execution Pipeline</h3>
+                    <label style="font-size: 0.85rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-secondary); cursor: pointer;">
+                        <input type="checkbox" id="toggle-sequence">
+                        Sequential Mode
+                    </label>
+                </div>
+                <div class="pipeline" style="gap: 1rem;">
+                    <button id="btn-nulls" class="btn btn-step" disabled>Play: Eliminate Nulls (ε)</button>
+                    <button id="btn-units" class="btn btn-step" disabled>Play: Eliminate Units</button>
+                    <button id="btn-useless" class="btn btn-step" disabled>Play: Eliminate Useless</button>
+                </div>
+                <div class="utility-controls">
+                    <button id="btn-reset" class="btn btn-danger" disabled>Reset Pipeline</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Right Pane: Output -->
+        <section class="pane output-pane">
+            <div class="pane-header">
+                <h2>Simplified Grammar Output</h2>
+            </div>
+            <div id="output-grammar" class="grammar-display active-display">
+                <div class="placeholder">Simplification Output will appear here...</div>
+            </div>
+            
+            <div class="logger-container">
+                <div class="pane-header">
+                    <h2>Live Trace Log</h2>
+                    <span class="badge">System Reasoning</span>
+                </div>
+                <div id="trace-log" class="trace-log">
+                    <div class="log-entry system">System initialized. Awaiting user input.</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
